@@ -1,6 +1,7 @@
 {
   "name": "monster-rolodex",
   "version": "0.1.0",
+  "homepage": "https://Samarth-8836.github.io/monsters",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

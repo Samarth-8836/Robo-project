@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
+import SearchBox from '../src/components/search-box/search-box.component.jsx';
+
+import CardList from './components/card-list/card-list.component.jsx';
 
 class App extends Component {
   
   constructor() {
     super();
     this.state = {
-      monsters : []
+      monsters : [],
+      searchField : ""
     };
   }
   componentDidMount() {
@@ -15,9 +19,13 @@ class App extends Component {
     .then(users => this.setState({monsters: users}));
   }
   render() {
+    const { monsters, searchField } = this.state;
+    const filteredMonsters = monsters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()));
     return (
       <div className="App">
-        {this.state.monsters.map(i => (<h1 key = {i.id}> {i.name},{i.username},{i.email}</h1>) )}
+        <h1>Monsters Rolodex </h1>
+        <SearchBox placeholder="search monsters" handleChange={e => {this.setState({ searchField : e.target.value})}}/>
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
